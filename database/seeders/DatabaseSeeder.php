@@ -2,6 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Access;
+use App\Models\Category;
+use App\Models\Channel;
+use App\Models\IncidentType;
+use App\Models\Opd;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +18,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            IncidentTypeSeeder::class,
+            OpdSeeder::class,
+            ChannelSeeder::class,
+            AccessSeeder::class,
+        ]);
+        \App\Models\User::factory(30)->create();
     }
 }
