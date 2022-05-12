@@ -20,7 +20,16 @@
                 </div>
             </div>
         </div>
-        <form method="post" action="/insiden/postTicket" enctype="multipart/form-data">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form method="post" action="/insiden/store" enctype="multipart/form-data">
             @csrf
             <section class="section">
                 <div class="card">
@@ -33,15 +42,18 @@
                                 <div class="form-group">
                                     <label for="namaOperator">Nama Operator</label>
                                     <input type="text" class="form-control" id="namaOperator" name="namaOperator"
-                                        value="my User" readonly>
+                                        value="{{ auth()->user()->nama }}" readonly>
                                 </div>
                             </div>
                         </div>
+                        <input type="text" value="{{ auth()->user()->id }}" id="idOperator" name="idOperator" hidden>
+                        <input type="text" value="{{ $incidentType }}" name="tipeInsiden" hidden>
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="namaPelapor">Nama Pelapor <span class="required">*</span> </label>
-                                    <input type="text" class="form-control" id="namaPelapor" name="namaPelapor" required>
+                                    <input type="text" class="form-control" id="namaPelapor" name="namaPelapor"
+                                        value='{{ old('namaPelapor') }}' required>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -57,7 +69,9 @@
                                     <select class="form-select" id="namaOpd" name="namaOpd" required>
                                         <option value="" selected disabled hidden>Pilih Asal OPD</option>
                                         @foreach ($opds as $opd)
-                                            <option value="{{ $opd->id }}">{{ Str::upper($opd->nama_opd) }}
+                                            <option value="{{ $opd->id }}"
+                                                @if ($opd->id == old('namaOpd')) {{ 'selected' }} @endif>
+                                                {{ Str::upper($opd->nama_opd) }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -66,25 +80,29 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="alamat">Alamat</label>
-                                    <input type="text" class="form-control" id="alamat" name="alamat">
+                                    <input type="text" class="form-control" id="alamat" name="alamat"
+                                        value="{{ old('alamat') }}">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="text" class="form-control" id="email" name="email">
+                                    <input type="text" class="form-control" id="email" name="email"
+                                        value="{{ old('email') }}">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="noHp">No. Handphone <span class="required">*</span></label>
-                                    <input type="text" class="form-control" id="noHP" name="noHP" required>
+                                    <input type="text" class="form-control" id="noHP" name="noHP"
+                                        value="{{ old('noHP') }}" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="telepon">Telepon</label>
-                                    <input type="text" class="form-control" id="telepon" name="telepon">
+                                    <input type="text" class="form-control" id="telepon" name="telepon"
+                                        value="{{ old('telepon') }}">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -93,7 +111,9 @@
                                     <select class="form-select" id="channel" name="channel" required>
                                         <option value="" selected disabled hidden>Pilih Channel</option>
                                         @foreach ($channels as $channel)
-                                            <option value="{{ $channel->id }}">{{ $channel->channel }}</option>
+                                            <option value="{{ $channel->id }}"
+                                                @if ($channel->id == old('channel')) {{ 'selected' }} @endif>
+                                                {{ $channel->channel }}</option>
                                         @endforeach
                                     </select>
                                 </fieldset>
@@ -128,7 +148,8 @@
                                 <div class="form-group mb-3">
                                     <label for="keluhanTextArea" class="form-label">Deskripsi Keluhan <span
                                             class="required">*</span> </label>
-                                    <textarea class="form-control" id="keluhanTextArea" rows="3" name="deskripsiKeluhan" required></textarea>
+                                    <textarea class="form-control" id="keluhanTextArea" rows="3" name="deskripsiKeluhan"
+                                        required>{{ old('deskripsiKeluhan') }}</textarea>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -142,7 +163,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="   col-12 d-flex justify-content-start">
+                <div class="col-12 d-flex justify-content-start">
                     <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
                     <button type="submit" class="btn btn-primary me-1 mb-1">Simpan</button>
                 </div>
@@ -176,6 +197,7 @@
                 resolve(type);
             })
         });
+
         // FilePond.setOptions({
         //     server: {
         //         url: "",

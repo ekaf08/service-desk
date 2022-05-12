@@ -23,7 +23,9 @@ class DatabaseSeeder extends Seeder
             OpdSeeder::class,
             ChannelSeeder::class,
             AccessSeeder::class,
+            StatusSeeder::class,
         ]);
+        
         \App\Models\User::factory(30)->create();
     }
 }

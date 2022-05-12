@@ -21,8 +21,8 @@ class CreateLogIncidentsTable extends Migration
             $table->foreignIdFor(User::class, 'user_id');
             $table->foreignIdFor(Status::class, 'status_id');
             $table->foreignIdFor(Incident::class, 'incident_id');
-            $table->string('penanganan');
-            $table->string('hasil_akhir');
+            $table->string('penanganan')->nullable();
+            $table->string('hasil_akhir')->nullable();
             $table->timestamps();
         });
     }

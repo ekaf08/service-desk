@@ -16,14 +16,15 @@
                                     <h3 class="mb-4">Sign In</h3>
                                 </div>
                             </div>
-                            <form action="#" class="signin-form">
+                            <form action="/postLogin" method="POST" class="signin-form">
+                                @csrf
                                 <div class="form-group mb-3">
                                     <label class="label" for="name">Username</label>
-                                    <input type="text" class="form-control" placeholder="Username" required>
+                                    <input type="text" class="form-control" name="username" placeholder="Username" required>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label class="label" for="password">Password</label>
-                                    <input type="password" class="form-control" placeholder="Password" required>
+                                    <input type="password" class="form-control" name="password" placeholder="Password" required>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>

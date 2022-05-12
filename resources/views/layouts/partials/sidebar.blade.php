@@ -70,10 +70,10 @@
                             <a href="#">Ganti Password</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="#">Ganti Profil</a>
+                            <a href="/profile">Ganti Profil</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="#">Keluar</a>
+                            <a href="/logout">Keluar</a>
                         </li>
                     </ul>
                 </li>

@@ -1,0 +1,26 @@
+[
+    {
+        "status": "eTiket",
+        "deskripsi": "Insiden baru dari pelapor (OPD) yang menunggu tindakan open dari SDO"
+    },
+    {
+        "status": "Open",
+        "deskripsi": "Insiden baru yang terdaftar dalam Service Desk untuk menunggu tindakan selanjutnya"
+    },
+    {
+        "status": "Eskalasi 2",
+        "deskripsi": "Insiden yang membutuhkan penyelesaian lebih lanjut dari teknisi"
+    },
+    {
+        "status": "Solved",
+        "deskripsi": "Insiden yang telah berhasil diselesaikan baik oleh teknisi maupun koordinator"
+    },
+    {
+        "status": "Closed",
+        "deskripsi": "Telah dilakukan konformasi pada user bahwa insiden berhasil diselesaikan"
+    },
+    {
+        "status": "Semua Tiket",
+        "deskripsi": "Total semua tiket yang masuk pada Service Desk"
+    }
+]

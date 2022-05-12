@@ -12,7 +12,7 @@ class FileUploadController extends Controller
             $filename = $file->getClientOriginalName();
             $folder = uniqid() . "-" . now()->timestamp;
             $file->storeAs('image/tmp/'. $folder, $filename);
-
+            
             return $folder;
         }
         return '';

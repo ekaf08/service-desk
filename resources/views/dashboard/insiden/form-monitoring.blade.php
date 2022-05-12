@@ -30,7 +30,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="namaOperator">Nama Operator</label>
-                                    <input type="text" class="form-control" id="namaOperator" disabled>
+                                    <input type="text" class="form-control" id="namaOperator" value="{{ auth()->user()->nama }}" disabled>
                                 </div>
                             </div>
                         </div>

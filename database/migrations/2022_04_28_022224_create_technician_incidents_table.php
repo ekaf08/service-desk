@@ -17,8 +17,8 @@ class CreateTechnicianIncidentsTable extends Migration
     {
         Schema::create('technician_incidents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(User::class);
-            $table->foreignId(Incident::class);
+            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Incident::class);
             $table->timestamps();
         });
     }

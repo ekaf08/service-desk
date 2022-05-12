@@ -22,23 +22,23 @@ class CreateIncidentsTable extends Migration
         Schema::create('incidents', function (Blueprint $table) {
             $table->id();
             $table->string('no_insiden');
-            $table->foreignId(IncidentType::class);
+            $table->foreignIdFor(IncidentType::class);
             $table->foreignIdFor(User::class, 'operator_id');
             $table->string('nip_pelapor')->nullable();
             $table->string('nama_pelapor');
-            $table->foreignId(Opd::class);
+            $table->foreignIdFor(Opd::class);
             $table->string('alamat')->nullable();
+            $table->string('no_hp');
             $table->text('deskripsi');
-            $table->foreignId(Keyword::class)->nullable();
+            $table->foreignIdFor(Keyword::class)->nullable();
             $table->foreignIdFor(User::class, 'koordinator_id')->nullable();
             $table->foreignIdFor(User::class, 'teknisi_pj_id')->nullable();
             $table->time('waktu_penanganan')->nullable();
-            // $table->foreignId(Priority::class);
-            $table->foreignId(Channel::class)->nullable();
+            $table->foreignIdFor(Channel::class)->nullable();
+            $table->string('status_terakhir')->nullable();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

@@ -17,8 +17,8 @@ class CreateAttachmentsTable extends Migration
     {
         Schema::create('attachments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(Incident::class)->nullable();
-            $table->foreignId(Report::class)->nullable();
+            $table->foreignIdFor(Incident::class)->nullable();
+            $table->foreignIdFor(Report::class)->nullable();
             $table->timestamps();
         });
     }
