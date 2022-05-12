@@ -12,5 +12,4 @@ class IncidentType extends Model
     protected $fillable = [
         'jenis_insiden'
     ];
-
 }
