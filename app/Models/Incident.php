@@ -10,5 +10,12 @@ class Incident extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function opd(){
+        return $this->belongsTo(Opd::class);
+    }
+    public function operator(){
+        return $this->belongsTo(User::class);
+    }
     
 }

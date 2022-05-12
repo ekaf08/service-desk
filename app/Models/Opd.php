@@ -11,4 +11,8 @@ class Opd extends Model
     protected $fillable = [
         'nama_opd'
     ];
+
+    public function incident(){
+        return $this->hasMany(Incident::class);
+    }
 }

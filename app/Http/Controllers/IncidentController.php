@@ -18,8 +18,12 @@ class IncidentController extends Controller
 {
     public function index()
     {
+        $etiket = Incident::with('opd')->where('status_terakhir', 'eTiket')->get();
+        $open = Incident::with('operator')->where('status_terakhir', 'Open')->get();
         return view('dashboard.insiden.index', [
-            'title' => 'Lihat Semua Tiket'
+            'title' => 'Lihat Semua Tiket',
+            'etikets' => $etiket,
+            'opentickets' => $open,
         ]);
     }
 
@@ -46,12 +50,15 @@ class IncidentController extends Controller
 
         $id_kominfo = Opd::firstWhere('nama_opd', 'dinas komunikasi dan informatika')->id;
         $incidentType = IncidentType::firstWhere('jenis_insiden', 'Tiket Insiden')->id;
+        $channels = Channel::all();
 
         return view('dashboard.insiden.form-monitoring', [
             'title' => 'Formulir Tiket Monitoring',
             'date' => $date,
             'time' => $time,
-            'id_kominfo' => $id_kominfo
+            'id_kominfo' => $id_kominfo,
+            'incidentType' => $incidentType,
+            'channels' => $channels,
         ]);
     }
 
@@ -87,8 +94,8 @@ class IncidentController extends Controller
             'opd_id' => $request->namaOpd,
         ]);
 
-        $user_id = Auth::id();
-        $user_level = Access::find($user_id)->level;
+        $user = auth()->user();
+        $user_level = Access::find($user->access_id)->level;
         if ($user_level <= 2) {
             $status = 'Open';
         } else if ($user_level > 2) {
@@ -96,7 +103,7 @@ class IncidentController extends Controller
         }
 
         (new LogIncidentController)->store([
-            'user_id' => $user_id,
+            'user_id' => $user->id,
             'incident_id' => $newIncident->id,
             'status' => $status,
         ]);

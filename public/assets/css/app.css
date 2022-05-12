@@ -1517,6 +1517,9 @@ a {
 .text-gray-600 {
     color: #6c757d !important;
 }
+.th-hover {
+    filter: brightness(0.5);
+}
 #topnav {
     margin-left: 300px;
     z-index: 10;

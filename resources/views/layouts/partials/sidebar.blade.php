@@ -62,7 +62,7 @@
 
                 <li class="sidebar-item has-sub">
                     <a href="#" class='sidebar-link'>
-                        <i class="bi bi-collection-fill"></i>
+                        <i class="bi bi-person-fill"></i>
                         <span>Akun</span>
                     </a>
                     <ul class="submenu ">

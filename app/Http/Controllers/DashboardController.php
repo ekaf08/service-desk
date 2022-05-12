@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Incident;
+use App\Models\Access;
 use App\Models\Status;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\Request;
+use App\Models\Incident;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {

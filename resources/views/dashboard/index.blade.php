@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('main-content')
-    <section class="row">
+    <section class="row right_col">
         <div class="col-12 col-lg-12">
             <div class="row">
 
@@ -34,4 +34,14 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('custom-script')
+    <script>
+        function resize() {
+            $('.right_col').css('min-height', $(window).height() - $('.right_col').offset().top - 40);
+        }
+        // $('window').on('load', resize()); 
+        $('window').on('resize', resize());
+    </script>
 @endsection

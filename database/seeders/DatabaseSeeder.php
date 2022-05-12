@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Access;
 use App\Models\Category;
 use App\Models\Channel;
+use App\Models\Incident;
 use App\Models\IncidentType;
 use App\Models\Opd;
 use Illuminate\Database\Seeder;
@@ -24,8 +25,10 @@ class DatabaseSeeder extends Seeder
             ChannelSeeder::class,
             AccessSeeder::class,
             StatusSeeder::class,
+            UserSeeder::class,
+            IncidentSeeder::class,
         ]);
         
-        \App\Models\User::factory(30)->create();
+        
     }
 }
