@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="/assets/vendors/iconly/bold.css">
     <link rel="stylesheet" href="/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="/assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="/assets/css/app.css">
     <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="/assets/css/app.css">
     @yield('custom-stylesheet')
 </head>
 
@@ -23,6 +23,7 @@
             @include('layouts.partials.navbar')
         </div>
         <div id="main">
+            <div class="right_col">
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
@@ -34,6 +35,7 @@
             </div>
             <div class="page-content">
                 @yield('main-content')
+            </div>
             </div>
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
@@ -51,14 +53,23 @@
     <script src="/assets/js/pages/dashboard.js"></script>
 
     <script src="/assets/js/mazer.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    {{-- <script src="/assets/vendors/jquery/jquery.min.js"></script> --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> --}}
+    <script src="/assets/vendors/jquery/jquery.min.js"></script>
     
     <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
+    <script>
+        function resize() {
+            $('.right_col').css('min-height', $(window).height() - $('.right_col').offset().top - 40);
+        }
+        // $('window').on('load', resize());
+        $('window').on('resize', resize());
+    </script>
+
     @yield('custom-script')
 </body>
 

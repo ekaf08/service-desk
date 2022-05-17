@@ -24,7 +24,8 @@ class IncidentFactory extends Factory
             'opd_id' => mt_rand(1, 50),
             'no_hp' => $this->faker->phoneNumber(),
             'deskripsi' => $this->faker->paragraph(),
-            'status_terakhir' => $status[mt_rand(0,1)]
+            'status_terakhir' => $status[mt_rand(0,1)],
+            'created_at' => $this->faker->dateTimeBetween('-3 week', '+1 week'),
         ];
     }
 }

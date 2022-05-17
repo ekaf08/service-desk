@@ -27,6 +27,20 @@ class IncidentController extends Controller
         ]);
     }
 
+    public function show(Incident $incident){
+        return view('dashboard.insiden.detail-insiden', [
+            'title' => 'Lihat Insiden',
+            'incident' => $incident,
+        ]);
+    }
+
+    public function edit(Incident $incident){
+        return view('dashboard.insiden.edit-insiden', [
+            'title' => 'Edit Insiden', 
+            'incident' => $incident,
+        ]);
+    }
+
     public function buatTicket()
     {
         [$date, $time] = getDateAndTime();

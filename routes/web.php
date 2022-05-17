@@ -34,6 +34,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/insiden',[IncidentController::class, 'index']);
     Route::get('/insiden/buat-tiket', [IncidentController::class, 'buatTicket']);
     Route::get('/insiden/buat-monitoring', [IncidentController::class, 'buatMonitoring']);
+    Route::get('/insiden/{incident}/', [IncidentController::class, 'show']);
+    Route::get('/insiden/{incident}/edit', [IncidentController::class, 'edit']);
     Route::post('/insiden/store', [IncidentController::class, 'store']);
     Route::post('/upload', [FileUploadController::class, 'store'])->name('upload');
     Route::any('/logout', [AuthController::class, 'logout']);

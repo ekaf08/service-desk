@@ -10,3 +10,9 @@ if(!function_exists('getDateAndTime')){
         return [$date, $time];
     }
 }
+
+if(!function_exists('rjust')){
+    function rjust($string, $length, $char="0"){
+        return str_pad($string, $length, $char, STR_PAD_LEFT);
+    }
+}

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Access;
 use App\Models\Status;
 use App\Models\Incident;
-use Illuminate\Support\Facades\Auth;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -13,9 +13,16 @@ class DashboardController extends Controller
         $statuses = [];
         $status_mod = Status::all();
         $color = ['purple', 'blue', 'red', 'green', 'red', 'green'];
+
+        $counterStatus = (DB::table('incidents')->select('status_terakhir', DB::raw('count(*) as total'))->whereYear('created_at', date('Y'))->groupBy('status_terakhir')->get()->keyBy('status_terakhir'));
+
         foreach($status_mod as $key =>$status){
             if($key < 5){
-                $counter = Incident::whereYear('created_at', date('Y'))->where('status_terakhir', $status->status)->count();
+                try{
+                    $counter = $counterStatus[$status->status]->total;
+                } catch(Exception $e){
+                    $counter = 0;
+                }
             } else {
                 $counter = Incident::count();
             }
@@ -26,6 +33,7 @@ class DashboardController extends Controller
                 'counter' => $counter
             ]);
         }
+        
         return view('dashboard.index', [
             'title' => 'Dashboard',
             'statuses' => $statuses,

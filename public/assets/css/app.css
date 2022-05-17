@@ -1530,3 +1530,13 @@ a {
 .icon-mid:before {
     vertical-align: middle;
 }
+
+textarea.form-control{
+    min-height: calc(7.5em + .75rem + 2px);
+}
+
+@media screen and (max-width: 799px) {
+    .col-md-4 .stats-icon {
+        display: none;
+    }
+}

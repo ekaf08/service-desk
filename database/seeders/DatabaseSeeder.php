@@ -27,8 +27,6 @@ class DatabaseSeeder extends Seeder
             StatusSeeder::class,
             UserSeeder::class,
             IncidentSeeder::class,
-        ]);
-        
-        
+        ]);   
     }
 }
