@@ -20,10 +20,12 @@ class IncidentController extends Controller
     {
         $etiket = Incident::with('opd')->where('status_terakhir', 'eTiket')->get();
         $open = Incident::with('operator')->where('status_terakhir', 'Open')->get();
+        $eskalasi = Incident::with('opd', 'teknisi', 'kategoris', 'operator')->where('status_terakhir', 'Eskalasi 2')->get();
         return view('dashboard.insiden.index', [
             'title' => 'Lihat Semua Tiket',
             'etikets' => $etiket,
             'opentickets' => $open,
+			'eskalasis' => $eskalasi,
         ]);
     }
 
