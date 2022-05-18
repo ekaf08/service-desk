@@ -161,10 +161,11 @@
             </div>
         </div>
     </div>
-    
+
     <div class="modal fade" id="riwayatModal" tabindex="-1" role="dialog" aria-labelledby="riwayatModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-fullscreen-xxl-down modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-dialog modal-xl modal-fullscreen-xxl-down modal-dialog-centered modal-dialog-scrollable"
+            role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="riwayatModalTitle">Riwayat Penanganan Insiden</h5>
@@ -173,7 +174,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    
+
                     <div class="table-responsive">
                         <table class="table table-hover" id="table-closed">
                             <thead>
@@ -192,45 +193,34 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>LOG-121</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>eTiket berhasil dibuat</td>
-                                    <td>Selasa, 17 Mei 2022</td>
-                                    <td>14.20</td>
-                                    <td>-</td>
-                                    <td>eTiket</td>
-                                    <td>SDT1</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>LOG-145</td>
-                                    <td>Selasa, 17 Mei 2022</td>
-                                    <td>14.20</td>
-                                    <td>-</td>
-                                    <td>Status insiden telah berubah menjadi Open</td>
-                                    <td>Selasa, 17 Mei 2022</td>
-                                    <td>15.30</td>
-                                    <td>1 Jam 10 Menit</td>
-                                    <td>Open</td>
-                                    <td>SDO</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>LOG-173</td>
-                                    <td>Selasa, 17 Mei 2022</td>
-                                    <td>14.20</td>
-                                    <td>Memerlukan penanganan lebih lanjut. Menunggu koordinasi dengan Koordinator untuk pemilihan teknisi</td>
-                                    <td>Status Insiden berubah menjadi eskalasi 2.</td>
-                                    <td>Selasa, 17 Mei 2022</td>
-                                    <td>15.41</td>
-                                    <td>11 Menit</td>
-                                    <td>Eskalasi 2</td>
-                                    <td>SDO</td>
-                                </tr>
+                                @foreach ($logs as $key => $log)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>LOG-{{ $log->id }}</td>
+                                        @if ($key != 0)
+                                            <td>{{ parseDate($logs[$key - 1]->created_at) }}</td>
+                                            <td>{{ parseTime($logs[$key - 1]->created_at) }}</td>
+                                        @else
+                                            <td>-</td>
+                                            <td>-</td>
+                                        @endif
+                                        @if (isset($log->penanganan))
+                                            <td>{{ $log->penanganan }}</td>
+                                        @else
+                                            <td>-</td>
+                                        @endif
+                                        @if (isset($log->hasil_akhir))
+                                            <td>{{ $log->hasil_akhir }}</td>
+                                        @else
+                                            <td>-</td>
+                                        @endif
+                                        <td>{{ parseDate($log->created_at) }}</td>
+                                        <td>{{ parseTime($log->created_at) }}</td>
+                                        <td>-</td>
+                                        <td>{{ $log->status->status }}</td>
+                                        <td>{{ $log->user->nama }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

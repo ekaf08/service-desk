@@ -17,5 +17,8 @@ class Incident extends Model
     public function operator(){
         return $this->belongsTo(User::class);
     }
-    
+
+    public function logincident(){
+        return $this->hasMany(LogIncident::class);
+    }
 }

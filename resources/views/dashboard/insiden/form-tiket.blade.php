@@ -152,12 +152,11 @@
                                         required>{{ old('deskripsiKeluhan') }}</textarea>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-lg-8">
                                 <div class="form-group">
                                     <label for="imageAttachment" class="form-label">File Pendukung</label>
                                     <input type="file" id="imageAttachment" name="imageAttachment"
-                                        class="image-preview-filepond" multiple data-allow-reorder="true"
-                                        data-max-file-size="3MB" data-max-files="3">
+                                        class="image-preview-filepond" data-max-file-size="3MB">
                                 </div>
                             </div>
                         </div>
@@ -198,16 +197,22 @@
             })
         });
 
-        // FilePond.setOptions({
-        //     server: {
-        //         url: "",
-        //         process: {
-        //             headers: {
-        //                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        //             },
-        //         }
-        //     }
-        // });
+        FilePond.setOptions({
+            server: {
+                process: {
+                    url: '/upload',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                },
+                revert: {
+                    url: '/revert',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                }
+            }
+        });
 
         dselect(document.querySelector('#namaOpd'), {
             search: true

@@ -28,9 +28,11 @@ class IncidentController extends Controller
     }
 
     public function show(Incident $incident){
+        $logs = (new LogIncidentController)->show($incident);
         return view('dashboard.insiden.detail-insiden', [
             'title' => 'Lihat Insiden',
             'incident' => $incident,
+            'logs' => $logs,
         ]);
     }
 
@@ -110,16 +112,25 @@ class IncidentController extends Controller
 
         $user = auth()->user();
         $user_level = Access::find($user->access_id)->level;
+        $hasil_akhir = "";
         if ($user_level <= 2) {
             $status = 'Open';
+            $hasil_akhir = 'Tiket baru berhasil di Open';
         } else if ($user_level > 2) {
             $status = 'eTiket';
+            $hasil_akhir = 'Tiket Insiden baru berhasil dibuat.';
         }
+
+        (new FileUploadController)->save([
+            'incident_id' => $newIncident->id,
+            'image_id' => $request->imageAttachment
+        ]);
 
         (new LogIncidentController)->store([
             'user_id' => $user->id,
             'incident_id' => $newIncident->id,
             'status' => $status,
+            'hasil_akhir' => $hasil_akhir,
         ]);
 
         $this->updateStatus($newIncident->id);

@@ -41,6 +41,10 @@ class User extends Authenticatable
     
     ];
 
+    public function logincident(){
+        return $this->hasMany(LogIncident::class);
+    }
+
     public function access(){
         return $this->belongsTo(Access::class);
     }    
