@@ -29,6 +29,7 @@ class CreateIncidentsTable extends Migration
             $table->foreignIdFor(Opd::class);
             $table->string('alamat')->nullable();
             $table->string('no_hp');
+            $table->string('email');
             $table->text('deskripsi');
             $table->foreignIdFor(Keyword::class)->nullable();
             $table->foreignIdFor(User::class, 'koordinator_id')->nullable();
