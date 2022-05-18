@@ -19,8 +19,8 @@
                     <td>{{ $etiket->nama_pelapor }}</td>
                     <td>{{ $etiket->nip_pelapor }}</td>
                     <td>{{ Str::Upper($etiket->opd->nama_opd) }}</td>
-                    <td data-sort="{{ $etiket->created_at->format('%Y%m%d%H%M%s')}}"> {{ $etiket->created_at->isoFormat('dddd, Do MMMM YYYY'); }}</td>
-                    <td data-sort="{{ $etiket->created_at->format('%H%M%s')}}">{{ $etiket->created_at->isoformat('H:mm') }}</td>
+                    <td data-sort="{{ parseDate($etiket->created_at, False) }}"> {{ parseDate($etiket->created_at) }}</td>
+                    <td data-sort="{{ parseTime($etiket->created_at, False) }}">{{ parseTime($etiket->created_at) }}</td>
                     <td>{{ $etiket->deskripsi }}</td>
                     <td>
                         <a href="/insiden/{{ $etiket->id }}/edit" class="btn btn-primary">Open</a>

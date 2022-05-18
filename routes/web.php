@@ -29,14 +29,22 @@ Route::post('/postLogin', [AuthController::class, 'postLogin']);
 
 # Dashboard
 Route::group(['middleware' => 'auth'], function(){
+    // Auth Login
     Route::redirect('/', '/dashboard');
     Route::get('/dashboard', [DashboardController::class, 'index']);
+    
+    // Insiden
     Route::get('/insiden',[IncidentController::class, 'index']);
     Route::get('/insiden/buat-tiket', [IncidentController::class, 'buatTicket']);
     Route::get('/insiden/buat-monitoring', [IncidentController::class, 'buatMonitoring']);
     Route::get('/insiden/{incident}/', [IncidentController::class, 'show']);
     Route::get('/insiden/{incident}/edit', [IncidentController::class, 'edit']);
     Route::post('/insiden/store', [IncidentController::class, 'store']);
+
+    // File Upload
     Route::post('/upload', [FileUploadController::class, 'store'])->name('upload');
+    Route::delete('/revert', [FileUploadController::class, 'delete'])->name('revert');
+
+    // Auth Logout
     Route::any('/logout', [AuthController::class, 'logout']);
 });

@@ -30,4 +30,8 @@ class Incident extends Model
     {
         return $this->belongsTo(Category::class, 'kategori_id');
     }
+
+    public function logincident(){
+        return $this->hasMany(LogIncident::class);
+    }
 }

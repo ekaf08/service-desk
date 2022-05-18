@@ -19,6 +19,7 @@ class CreateAttachmentsTable extends Migration
             $table->id();
             $table->foreignIdFor(Incident::class)->nullable();
             $table->foreignIdFor(Report::class)->nullable();
+            $table->string('image_id');
             $table->timestamps();
         });
     }

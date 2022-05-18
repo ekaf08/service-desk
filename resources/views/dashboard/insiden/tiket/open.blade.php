@@ -17,8 +17,8 @@
                     <td data-sort="{{ rjust($openticket->id, 5) }}">{{ $openticket->no_insiden }}</td>
                     <td>{{ $openticket->operator->nama }}</td>
                     <td>{{ $openticket->nama_pelapor }}</td>
-                    <td data-sort="{{ $openticket->created_at->format('%Y%m%d%H%M%s')}}"> {{ $openticket->created_at->isoFormat('dddd, Do MMMM YYYY'); }}</td>
-                    <td data-sort="{{ $openticket->created_at->format('%H%M%s')}}">{{ $openticket->created_at->isoformat('H:mm') }}</td>
+                    <td data-sort="{{ parseDate($openticket->created_at, False)}}"> {{ parseDate($openticket->created_at) }}</td>
+                    <td data-sort="{{ parseTime($openticket->created_at, False)}}">{{ parseTime($openticket->created_at) }}</td>
                     <td>{{ $openticket->deskripsi }}</td>
                     <td>
                         <a href="/insiden/{{ $openticket->id }}/edit" class="btn btn-primary">Proses</a>
